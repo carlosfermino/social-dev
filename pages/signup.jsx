@@ -1,12 +1,13 @@
-import styled from "styled-components"
-import Link from "next/link"
+import { useState } from 'react'
+import styled from 'styled-components'
+import Link from 'next/link'
 
-import ImageWithSpace from "../src/components/layout/ImageWithSpace"
+import ImageWithSpace from '../src/components/layout/ImageWithSpace'
 import H1 from '../src/components/typography/H1'
 import H2 from '../src/components/typography/H2'
 import H4 from '../src/components/typography/H4'
-import Button from "../src/components/inputs/Button"
-import Input from "../src/components/inputs/Input"
+import Button from '../src/components/inputs/Button'
+import Input from '../src/components/inputs/Input'
 
 const FormContainer = styled.div`
   margin-top: 60px;
@@ -24,19 +25,36 @@ const Text = styled.p`
 `
 
 function SignupPage () {
+  const [firstname, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [user, setUser] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleForm = (event) => {
+    event.preventDefault()
+    console.log({
+      firstname,
+      lastName,
+      user,
+      email,
+      password
+    })
+  }
+  
   return (
     <ImageWithSpace>
       <H1># Social Dev</H1>
       <H4>Tudo que acontece no mundo dev, está aqui!</H4>
       <FormContainer>
         <H2>Crie sua conta</H2>
-        <Form>
-          <Input label="Nome" type="text" />
-          <Input label="Sobrenome" type="text" />
-          <Input label="Usuário" type="text" />
-          <Input label="Email" type="email" />
-          <Input label="Senha" type="password" />
-          <Button>Entrar</Button>
+        <Form  onSubmit={handleForm}>
+          <Input label="Nome" onChange={(event) => {setFirstName(event.target.value)}} />
+          <Input label="Sobrenome" onChange={({target}) => setLastName(target.value)} />
+          <Input label="Usuário" onChange={({target}) => setUser(target.value)} />
+          <Input label="Email" type="email" onChange={({target}) => setEmail(target.value)} />
+          <Input label="Senha" type="password" onChange={({target}) => setPassword(target.value)} />
+          <Button>Cadastrar</Button>
         </Form>
         <Text>Já possui uma conta? <Link href="/login">Faça seu login</Link></Text>
       </FormContainer>
