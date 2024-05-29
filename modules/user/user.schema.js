@@ -6,8 +6,16 @@ export const signupSchema = Joi.object({
   user: Joi.string().required().max(30).message('O campo "usuário" pode ter no máximo {{#limit}} caracteres.'),
   email: Joi.string().email({ tlds: { allow: false } }).required().max(100).message('O campo "email" pode ter no máximo {{#limit}} caracteres.'),
   password: Joi.string().required()
-  .max(50).message('O campo "senha" pode ter no máximo {{#limit}} caracteres.')
-  .min(6).message('O campo "senha" pode ter no minimo {{#limit}} caracteres.'),
+    .max(50).message('O campo "senha" pode ter no máximo {{#limit}} caracteres.')
+    .min(6).message('O campo "senha" pode ter no minimo {{#limit}} caracteres.'),
   //password: Joi.string().pattern(new RegExp('^[a-zA-Z0-6]{3,30}$')),
   //repeat_password:Joi.ref('password'),
+})
+
+
+export const loginSchema = Joi.object({
+  userOrEmail: Joi.string().required(),
+  password: Joi.string().required()
+    .max(50).message('O campo "senha" pode ter no máximo {{#limit}} caracteres.')
+    .min(6).message('O campo "senha" pode ter no minimo {{#limit}} caracteres.'),
 })
