@@ -1,18 +1,18 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { joiResolver } from "@hookform/resolvers/joi"
-import axios from "axios"
-import { useRouter } from "next/router"
+import { joiResolver } from '@hookform/resolvers/joi'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
-import { loginSchema } from "../modules/user/user.schema"
+import { loginSchema } from '../modules/user/user.schema'
 
-import ImageWithSpace from "../src/components/layout/ImageWithSpace"
+import ImageWithSpace from '../src/components/layout/ImageWithSpace'
 import H1 from '../src/components/typography/H1'
 import H2 from '../src/components/typography/H2'
 import H4 from '../src/components/typography/H4'
-import Button from "../src/components/inputs/Button"
-import Input from "../src/components/inputs/Input"
+import Button from '../src/components/inputs/Button'
+import Input from '../src/components/inputs/Input'
 
 const FormContainer = styled.div`
   margin-top: 60px;
