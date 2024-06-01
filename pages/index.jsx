@@ -33,8 +33,7 @@ const PostContainer = styled.div`
   display flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 20px;
-  
+  margin-top: 20px;  
 `
 
 const fetcher = url => axios.get(url).then(res => res.data)
@@ -56,7 +55,9 @@ function HomePage ({user}) {
                     key={post._id}
                     text={post.text}
                     user={post.createdBy.user}
-                    date={post.createdDate} 
+                    date={post.createdDate}
+                    isOwner={post.createdBy._id === user.id}
+                    id={post._id} 
                   />
                 )
               }
