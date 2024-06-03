@@ -36,7 +36,10 @@ function SignupPage () {
     resolver: joiResolver(signupSchema)
   })
 
+  const [loading, setLoading] = useState(false)
+
   const handleForm = async (data) => {
+    setLoading(true)
     try {
       const { status } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/signup`, data)
       if (status === 201) {
@@ -47,8 +50,10 @@ function SignupPage () {
         setError(err.response.data.duplicatedKey, {
           type: 'duplicated'
         })
+      } else {
+        setLoading(false)
       }
-    }
+      }
   }
   
   return (
@@ -63,7 +68,7 @@ function SignupPage () {
           <Input label="Usuário" name="user" control={control} />
           <Input label="Email" type="email" name="email" control={control} />
           <Input label="Senha" type="password" name="password" control={control} />
-          <Button type="submit" disabled={Object.keys(errors).length > 0}>Cadastrar</Button>
+          <Button loading={loading} type="submit" disabled={Object.keys(errors).length > 0}>Cadastrar</Button>
         </Form>
         <Text>Já possui uma conta? <Link href="/login">Faça seu login</Link></Text>
       </FormContainer>
