@@ -30,7 +30,7 @@ const RefreshPostContainer = styled.div`
 `
 
 const PostContainer = styled.div`
-  display flex;
+  display: flex;
   flex-direction: column;
   gap: 20px;
   margin-top: 20px;  
